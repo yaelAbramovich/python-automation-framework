@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+.env
+.auth/
+.pytest_cache/
+.DS_Store
+*.log
