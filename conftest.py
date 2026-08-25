@@ -1,4 +1,4 @@
-from typing import Generator
+from collections.abc import Generator
 
 import pytest
 from playwright.sync_api import APIRequestContext, Page, Playwright
@@ -34,6 +34,8 @@ def api_request_context(playwright: Playwright) -> Generator[APIRequestContext, 
     pytest-playwright has no built-in API request fixture (unlike @playwright/test's
     `request`), so it's created here directly against `api_base_url`.
     """
-    request_context = playwright.request.new_context(base_url=environment_configuration.api_base_url)
+    request_context = playwright.request.new_context(
+        base_url=environment_configuration.api_base_url
+    )
     yield request_context
     request_context.dispose()

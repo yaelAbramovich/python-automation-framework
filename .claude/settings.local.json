@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(lsof *)",
+      "Bash(pytest *)",
+      "Bash(python -m pytest *)",
+      "Bash(pip install *)",
+      "Bash(playwright install *)",
+      "Bash(ruff *)",
+      "Bash(mypy *)",
+      "WebFetch(domain:playwright.dev)",
+      "Bash(curl -sI https://the-internet.herokuapp.com/login)",
+      "Bash(git mv *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
+    ]
+  }
+}

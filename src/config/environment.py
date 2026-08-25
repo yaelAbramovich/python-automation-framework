@@ -21,7 +21,9 @@ def _read_string_environment_variable_or_default(variable_name: str, default_val
     return _read_environment_variable_or_none(variable_name) or default_value
 
 
-def _read_numeric_environment_variable_or_default(variable_name: str, default_value: float) -> float:
+def _read_numeric_environment_variable_or_default(
+    variable_name: str, default_value: float
+) -> float:
     raw_value = _read_environment_variable_or_none(variable_name)
     if raw_value is None:
         return default_value
