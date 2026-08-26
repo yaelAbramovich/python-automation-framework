@@ -27,9 +27,12 @@ pip install -r requirements.txt
 playwright install chromium
 ```
 
-Copy `.env.example` to `.env` if you want to override defaults (base URLs,
-credentials, timeouts, log level) — see `src/config/environment.py` for the
-full list of variables and their defaults.
+Copy `.env.example` to `.env` and fill in `UI_USERNAME`/`UI_PASSWORD` —
+those two are required with no default and the app will fail to start
+without them. Everything else (base URLs, timeouts, log level) is optional
+and only needs setting to override its default — see
+`src/config/environment.py` for the full list of variables and their
+defaults.
 
 ## Running tests
 
@@ -74,7 +77,7 @@ conftest.py                 # base_url + per-page timeouts + api_request_context
 pytest.ini                   # pytest-playwright CLI defaults (browser, report, markers)
 pyproject.toml               # ruff + mypy config
 requirements.txt             # pinned dependency list
-.env.example                 # copy to .env to override defaults (currently empty)
+.env.example                 # copy to .env; fill in UI_USERNAME/UI_PASSWORD (required, no default)
 ```
 
 There is no single `playwright.config` file — pytest-playwright splits that
