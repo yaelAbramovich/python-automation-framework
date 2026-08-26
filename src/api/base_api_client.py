@@ -37,7 +37,7 @@ class BaseApiClient(ABC):
 
     def __init__(self, request_context: APIRequestContext, client_logger_name: str) -> None:
         if type(self) is BaseApiClient:
-            raise TypeError("BaseApiClient is abstract and cannot be instantiated directly")
+            raise TypeError("BaseApiClient cannot be instantiated directly")
         self._request_context = request_context
         self._logger = Logger(client_logger_name)
 
