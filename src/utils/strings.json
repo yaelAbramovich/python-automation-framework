@@ -1,11 +1,11 @@
 {
   "pages": {
     "login": {
-      "urlPath": "/login",
-      "usernameFieldLabel": "Username",
-      "passwordFieldLabel": "Password",
-      "submitButtonAccessibleName": "Login",
-      "successFlashMessageFragment": "You logged into a secure area!"
+      "url_path": "/login",
+      "username_input_label": "Username",
+      "password_input_label": "Password",
+      "login_button_accessible_name": "Login",
+      "login_success_message": "You logged into a secure area!"
     }
   }
 }

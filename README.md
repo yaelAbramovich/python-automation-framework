@@ -66,7 +66,7 @@ src/
   pages/
     base_page.py            # BasePage — shared navigate/click/fill/assert helpers
   utils/
-    strings.json             # empty — placeholder for page-string constants
+    strings.json             # UI page strings (e.g. pages.login.*), snake_case keys
 
 tests/
   api/                      # API test specs

@@ -9,10 +9,8 @@ def test_login_with_valid_credentials_shows_success_message(page: Page) -> None:
     login_page = LoginPage(page)
 
     login_page.open()
-    login_page.login_with(
+    login_page.login(
         environment_configuration.ui_username, environment_configuration.ui_password
     )
 
-    login_page.assert_flash_message_contains(
-        strings["pages"]["login"]["successFlashMessageFragment"]
-    )
+    login_page.assert_flash_message_contains(strings["pages"]["login"]["login_success_message"])
