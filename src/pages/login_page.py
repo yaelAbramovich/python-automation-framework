@@ -22,12 +22,21 @@ class LoginPage(BasePage):
     def open(self) -> None:
         self._navigate_to_url_path(_LOGIN_STRINGS["urlPath"])
 
-    def login_with(self, username: str, password: str) -> None:
+    def fill_username_field(self, username: str) -> None:
         self._fill_element_with_text(self._username_field, username, "Username input field")
+
+    def fill_password_field(self, password: str) -> None:
         self._fill_element_with_text(
             self._password_field, password, "Password input field", sensitive=True
         )
+
+    def click_login_submit_button(self) -> None:
         self._click_on_element(self._submit_button, "Login submit button")
+
+    def login_with(self, username: str, password: str) -> None:
+        self.fill_username_field(username)
+        self.fill_password_field(password)
+        self.click_login_submit_button()
 
     def assert_flash_message_contains(self, expected_fragment: str) -> None:
         flash_locator = self._page.get_by_text(expected_fragment).describe(

@@ -6,8 +6,8 @@ from src.api.posts_api_client import PostsApiClient
 def test_get_post_by_id_returns_matching_post(api_request_context: APIRequestContext) -> None:
     client = PostsApiClient(api_request_context)
 
-    response, post = client.get_post_by_id(1)
+    response, post_body = client.get_post_by_id(1)
 
     assert response.ok, f"Expected a successful response but got HTTP {response.status}"
-    assert post["id"] == 1, f"Expected post id 1 but got {post['id']}"
-    assert "title" in post, f"Expected response body to contain a 'title' field: {post}"
+    assert post_body["id"] == 1, f"Expected post id 1 but got {post_body['id']}"
+    assert "title" in post_body, f"Expected response body to contain a 'title' field: {post_body}"

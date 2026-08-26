@@ -4,7 +4,8 @@
       "urlPath": "/login",
       "usernameFieldLabel": "Username",
       "passwordFieldLabel": "Password",
-      "submitButtonAccessibleName": "Login"
+      "submitButtonAccessibleName": "Login",
+      "successFlashMessageFragment": "You logged into a secure area!"
     }
   }
 }
