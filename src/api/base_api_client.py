@@ -74,3 +74,18 @@ class BaseApiClient(ABC):
                 parse_error,
             )
             raise
+
+    def _assert_response_status(
+        self,
+        api_response: APIResponse,
+        expected_status_code: int,
+    ) -> None:
+        self._logger.debug(
+            f"Validating response status: expected {expected_status_code}, "
+            f"actual {api_response.status}"
+        )
+
+        assert api_response.status == expected_status_code, (
+            f"Expected HTTP status {expected_status_code}, "
+            f"but received {api_response.status}"
+        )

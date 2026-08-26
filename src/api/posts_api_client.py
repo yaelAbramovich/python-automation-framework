@@ -13,3 +13,6 @@ class PostsApiClient(BaseApiClient):
             HttpMethod.GET, self._SINGLE_POST_PATH_TEMPLATE.format(post_id=post_id)
         )
         return response, self._parse_response_as_json(response)
+
+    def assert_post_retrieved_successfully(self, api_response: APIResponse) -> None:
+        self._assert_response_status(api_response, 200)
