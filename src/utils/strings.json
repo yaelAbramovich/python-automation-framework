@@ -1,0 +1,10 @@
+{
+  "pages": {
+    "login": {
+      "urlPath": "/login",
+      "usernameFieldLabel": "Username",
+      "passwordFieldLabel": "Password",
+      "submitButtonAccessibleName": "Login"
+    }
+  }
+}

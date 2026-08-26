@@ -63,7 +63,6 @@ src/
     environment.py         # single source of truth for env vars (typed, defaulted)
   infrastructure/
     logger.py               # Logger — leveled, timestamped console logging
-    fixtures.py              # empty — placeholder for future shared pytest fixtures
   pages/
     base_page.py            # BasePage — shared navigate/click/fill/assert helpers
   utils/

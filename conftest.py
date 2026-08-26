@@ -5,12 +5,7 @@ from playwright.sync_api import APIRequestContext, Page, Playwright
 
 from src.config.environment import environment_configuration
 
-"""
-Root pytest-playwright config. There is no single playwright.config.py in the
-Python ecosystem — CLI-level defaults (browser, screenshot/video/trace) live
-in pytest.ini's `addopts`; per-context/per-page overrides live here as
-fixture overrides of the plugin's built-in `browser_context_args`/`page`.
-"""
+# Root pytest-playwright fixtures — CLI-level defaults live in pytest.ini.
 
 
 @pytest.fixture(scope="session")
