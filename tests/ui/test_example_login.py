@@ -24,7 +24,9 @@ class _ExampleLoginPage(BasePage):
 
     def login_with(self, username: str, password: str) -> None:
         self._fill_element_with_text(self._username_field, username, "Username input field")
-        self._fill_element_with_text(self._password_field, password, "Password input field")
+        self._fill_element_with_text(
+            self._password_field, password, "Password input field", sensitive=True
+        )
         self._click_on_element(self._submit_button, "Login submit button")
 
     def assert_flash_message_contains(self, expected_fragment: str) -> None:

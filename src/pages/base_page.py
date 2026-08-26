@@ -4,6 +4,8 @@ from playwright.sync_api import Locator, Page, expect
 
 from src.infrastructure.logger import Logger
 
+_MASKED_VALUE_PLACEHOLDER = "***"
+
 
 class BasePage(ABC):
     """
@@ -51,9 +53,14 @@ class BasePage(ABC):
         element_locator.click()
 
     def _fill_element_with_text(
-        self, element_locator: Locator, text_value: str, element_description: str
+        self,
+        element_locator: Locator,
+        text_value: str,
+        element_description: str,
+        sensitive: bool = False,
     ) -> None:
-        self._logger.info(f'Filling element "{element_description}" with text: {text_value}')
+        logged_value = _MASKED_VALUE_PLACEHOLDER if sensitive else text_value
+        self._logger.info(f'Filling element "{element_description}" with text: {logged_value}')
         element_locator.fill(text_value)
 
     def _get_visible_text_from_element(
