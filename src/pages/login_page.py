@@ -8,7 +8,7 @@ _LOGIN_STRINGS = strings["pages"]["login"]
 
 class LoginPage(BasePage):
     def __init__(self, page: Page) -> None:
-        super().__init__(page, "LoginPage")
+        super().__init__(page)
         self._username_field = page.get_by_label(_LOGIN_STRINGS["usernameFieldLabel"]).describe(
             "Username input field"
         )

@@ -28,11 +28,11 @@ class BasePage(ABC):
         on locator.is_visible() directly — those don't retry.
     """
 
-    def __init__(self, page: Page, page_logger_name: str) -> None:
+    def __init__(self, page: Page) -> None:
         if type(self) is BasePage:
             raise TypeError("BasePage is abstract and cannot be instantiated directly")
         self._page = page
-        self._logger = Logger(page_logger_name)
+        self._logger = Logger(type(self).__name__)
 
     # ---------- Navigation ----------
 

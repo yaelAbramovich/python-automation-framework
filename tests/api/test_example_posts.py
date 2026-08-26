@@ -8,6 +8,6 @@ def test_get_post_by_id_returns_matching_post(api_request_context: APIRequestCon
 
     response, post = client.get_post_by_id(1)
 
-    assert response.ok
-    assert post["id"] == 1
-    assert "title" in post
+    assert response.ok, f"Expected a successful response but got HTTP {response.status}"
+    assert post["id"] == 1, f"Expected post id 1 but got {post['id']}"
+    assert "title" in post, f"Expected response body to contain a 'title' field: {post}"

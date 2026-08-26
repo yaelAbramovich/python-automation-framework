@@ -35,11 +35,11 @@ class BaseApiClient(ABC):
     UsersApiClient) extend this class and expose endpoint-specific methods.
     """
 
-    def __init__(self, request_context: APIRequestContext, client_logger_name: str) -> None:
+    def __init__(self, request_context: APIRequestContext) -> None:
         if type(self) is BaseApiClient:
             raise TypeError("BaseApiClient cannot be instantiated directly")
         self._request_context = request_context
-        self._logger = Logger(client_logger_name)
+        self._logger = Logger(type(self).__name__)
 
     def _send_http_request(
         self,
