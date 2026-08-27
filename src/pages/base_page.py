@@ -70,6 +70,12 @@ class BasePage(ABC):
         text_content = element_locator.text_content()
         return (text_content or "").strip()
 
+    def _get_rendered_text_from_element(
+        self, element_locator: Locator, element_description: str
+    ) -> str:
+        self._logger.info(f"Getting rendered text from element: {element_description}")
+        return element_locator.inner_text()
+
     def _select_option_from_dropdown(
         self, element_locator: Locator, option_label: str, element_description: str
     ) -> None:

@@ -6,6 +6,7 @@ from playwright.sync_api import APIRequestContext, Page, Playwright
 from src.config.environment import environment_configuration
 from src.pages.dropdown_page import DropdownPage
 from src.pages.login_page import LoginPage
+from src.pages.wikipedia_test_automation_page import WikipediaTestAutomationPage
 
 # Root pytest-playwright fixtures — CLI-level defaults live in pytest.ini.
 
@@ -46,3 +47,8 @@ def login_page(page: Page) -> LoginPage:
 @pytest.fixture
 def dropdown_page(page: Page) -> DropdownPage:
     return DropdownPage(page)
+
+
+@pytest.fixture
+def wikipedia_test_automation_page(page: Page) -> WikipediaTestAutomationPage:
+    return WikipediaTestAutomationPage(page)
