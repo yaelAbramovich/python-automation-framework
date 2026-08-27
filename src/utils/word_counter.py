@@ -10,11 +10,11 @@ def get_word_occurrence_counts(text: str) -> Counter[str]:
     return Counter(_WORD_PATTERN.findall(text_without_brackets.lower()))
 
 
-def print_word_occurrence_counts(label: str, word_occurrence_counts: Counter[str]) -> int:
+def print_word_occurrence_counts(label: str, word_occurrence_counts: Counter[str]) -> None:
     print(f"{label} word occurrence counts:")
     for word, occurrence_count in word_occurrence_counts.most_common():
         print(f"{word}: {occurrence_count}")
 
-    unique_word_count = len(word_occurrence_counts)
-    print(f"{label} unique word count: {unique_word_count}")
-    return unique_word_count
+
+def get_unique_word_count(word_occurrence_counts: Counter[str]) -> int:
+    return len(word_occurrence_counts)
