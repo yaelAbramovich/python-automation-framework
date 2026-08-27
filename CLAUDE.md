@@ -96,7 +96,7 @@ never read `os.environ` anywhere else. Every env var has a default. `.env.exampl
    actions already auto-wait. A check on parsed Python data — a dict field from a JSON body, a
    list, a string, a number — has no Playwright equivalent, so it stays a plain
    `assert x == y, "message"` that says what was expected and what was actually found (see
-   `tests/api/test_example_posts.py`).
+   `tests/ui/test_wikipedia_word_count.py`).
 
 6. **`BasePage` stays generic; page-specific behavior belongs on the concrete page.** If a page
    ever needs a check or action that only makes sense for that one page, add it to that page's own

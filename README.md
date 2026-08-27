@@ -78,8 +78,8 @@ def test_example(wikipedia_test_automation_page: WikipediaTestAutomationPage) ->
 An API test uses an API client. An API client extends `BaseApiClient`:
 
 ```python
-client = PostsApiClient(api_request_context)
-response, post = client.get_post_by_id(1)
+client = WikipediaApiClient(api_request_context)
+section_text = client.get_section_text(page_title)
 ```
 
 ## Rules to follow
