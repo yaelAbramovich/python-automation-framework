@@ -1,6 +1,7 @@
 from playwright.sync_api import APIRequestContext
 
 from src.api.wikipedia_api_client import WikipediaApiClient
+from src.infrastructure.logger import Logger
 from src.pages.wikipedia_test_automation_page import WikipediaTestAutomationPage
 from src.utils.strings import strings
 from src.utils.word_counter import (
@@ -16,6 +17,8 @@ def test_unique_word_count_matches_between_ui_and_api(
     wikipedia_test_automation_page: WikipediaTestAutomationPage,
     api_request_context: APIRequestContext,
 ) -> None:
+    logger = Logger(__name__)
+
     wikipedia_test_automation_page.open_wikipedia_test_automation_page()
     wikipedia_test_automation_page.click_test_driven_development_table_of_contents_link()
 
@@ -38,4 +41,9 @@ def test_unique_word_count_matches_between_ui_and_api(
     assert ui_unique_word_count == api_unique_word_count, (
         f"Expected UI unique word count ({ui_unique_word_count}) to match "
         f"API unique word count ({api_unique_word_count})"
+    )
+
+    logger.info(
+        f"UI and API unique word count comparison completed with "
+        f"{ui_unique_word_count} unique fields"
     )
