@@ -67,7 +67,7 @@ never read `os.environ` anywhere else. Every env var has a default. `.env.exampl
 
 | File | What it's for |
 |---|---|
-| `conftest.py` | Fixture overrides — sets `base_url` and timeouts from config, adds `api_request_context` (pytest-playwright has no built-in one). |
+| `conftest.py` | Fixture overrides — sets timeouts from config, adds `api_request_context` (pytest-playwright has no built-in one). |
 | `pytest.ini` | CLI defaults: browser, screenshot/video/trace capture, HTML report path, markers. |
 | `pyproject.toml` | `ruff` and `mypy` config. |
 | `requirements.txt` | Pinned dependencies. |

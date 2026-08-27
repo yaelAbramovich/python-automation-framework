@@ -18,10 +18,6 @@ def _read_environment_variable_or_none(variable_name: str) -> Optional[str]:
     return raw_value.strip()
 
 
-def _read_string_environment_variable_or_default(variable_name: str, default_value: str) -> str:
-    return _read_environment_variable_or_none(variable_name) or default_value
-
-
 def _read_int_environment_variable_or_default(variable_name: str, default_value: int) -> int:
     raw_value = _read_environment_variable_or_none(variable_name)
     if raw_value is None:
@@ -51,20 +47,12 @@ def _read_log_level_environment_variable_or_default(
 
 @dataclass(frozen=True)
 class EnvironmentConfiguration:
-    ui_base_url: str
-    api_base_url: str
     default_action_timeout_ms: int
     default_navigation_timeout_ms: int
     log_level: SupportedLogLevel
 
 
 environment_configuration = EnvironmentConfiguration(
-    ui_base_url=_read_string_environment_variable_or_default(
-        "UI_BASE_URL", "https://the-internet.herokuapp.com"
-    ),
-    api_base_url=_read_string_environment_variable_or_default(
-        "API_BASE_URL", "https://jsonplaceholder.typicode.com"
-    ),
     default_action_timeout_ms=_read_int_environment_variable_or_default(
         "DEFAULT_ACTION_TIMEOUT_MS", 10_000
     ),
