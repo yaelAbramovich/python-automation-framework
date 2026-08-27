@@ -16,7 +16,6 @@ on:
           - all
           - smoke
           - regression
-          - login
       # environment:
       #   description: 'Target environment to run against. Each environment has
       #     its own .env file (e.g. .env.dev, .env.staging, .env.prod) that is

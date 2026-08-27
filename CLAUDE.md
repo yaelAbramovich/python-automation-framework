@@ -58,8 +58,7 @@ test_*.py
 
 **Config.** `environment.py` is the only place `os.environ` is read. It builds a typed, validated
 `environment_configuration` object that everything else imports. Add a new env var there first —
-never read `os.environ` anywhere else. `UI_USERNAME` and `UI_PASSWORD` are required and fail fast
-if missing. Everything else has a default. `.env.example` lists them all.
+never read `os.environ` anywhere else. Every env var has a default. `.env.example` lists them all.
 
 **Logging.** Every `Logger(...)` is built as `Logger(type(self).__name__)` inside `BasePage` and
 `BaseApiClient`. A concrete class never passes its own logger name.
@@ -72,7 +71,7 @@ if missing. Everything else has a default. `.env.example` lists them all.
 | `pytest.ini` | CLI defaults: browser, screenshot/video/trace capture, HTML report path, markers. |
 | `pyproject.toml` | `ruff` and `mypy` config. |
 | `requirements.txt` | Pinned dependencies. |
-| `.env.example` | Every configurable env var. `UI_USERNAME`/`UI_PASSWORD` are required; the rest show their real defaults. |
+| `.env.example` | Every configurable env var, shown with its real default. |
 
 ## Conventions to follow
 
@@ -135,5 +134,5 @@ if missing. Everything else has a default. `.env.example` lists them all.
 ## CI
 
 `.github/workflows/playwright.yml` runs manually for now (`workflow_dispatch`), with a `tag` input
-(`all`/`smoke`/`regression`/`login`) to filter by pytest marker. It runs `ruff check` → `mypy` →
+(`all`/`smoke`/`regression`) to filter by pytest marker. It runs `ruff check` → `mypy` →
 API tests → UI tests (chromium only), then uploads the HTML report.
