@@ -70,6 +70,12 @@ class BasePage(ABC):
         text_content = element_locator.text_content()
         return (text_content or "").strip()
 
+    def _select_option_from_dropdown(
+        self, element_locator: Locator, option_label: str, element_description: str
+    ) -> None:
+        self._logger.info(f'Selecting "{option_label}" on element: {element_description}')
+        element_locator.select_option(label=option_label)
+
     # ---------- Web-first assertions (auto-retry until timeout) ----------
 
     def _assert_element_is_visible(
@@ -99,3 +105,11 @@ class BasePage(ABC):
             f'Asserting element "{element_description}" contains text: {expected_text}'
         )
         expect(element_locator, element_description).to_contain_text(expected_text)
+
+    def _assert_element_has_value(
+        self, element_locator: Locator, expected_value: str, element_description: str
+    ) -> None:
+        self._logger.debug(
+            f'Asserting element "{element_description}" has value: {expected_value}'
+        )
+        expect(element_locator, element_description).to_have_value(expected_value)

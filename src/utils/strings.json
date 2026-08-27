@@ -6,6 +6,10 @@
       "password_input_label": "Password",
       "login_button_accessible_name": "Login",
       "login_success_message": "You logged into a secure area!"
+    },
+    "dropdown": {
+      "url_path": "/dropdown",
+      "option_one_label": "Option 1"
     }
   }
 }
