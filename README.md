@@ -36,7 +36,6 @@ More ways to run:
 
 ```bash
 pytest tests/ui              # only UI tests
-pytest tests/api             # only API tests
 pytest -k "wikipedia"        # tests matching a name
 pytest --headed              # show the browser
 pytest -v                    # show PASSED/FAILED per test
@@ -56,11 +55,10 @@ src/
   api/               # API clients — one file per API resource
   config/            # Reads settings from .env
   infrastructure/    # Logger
-  utils/             # strings.json and its loader
+  utils/             # strings.json/loader, word-counting helpers
 
 tests/
   ui/                # UI tests
-  api/               # API tests
 ```
 
 ## How a test works
@@ -81,6 +79,19 @@ An API test uses an API client. An API client extends `BaseApiClient`:
 client = WikipediaApiClient(api_request_context)
 section_text = client.get_section_text(page_title)
 ```
+
+## Example: Wikipedia UI/API word-count check
+
+`tests/ui/test_wikipedia_word_count.py` is the framework's one working
+end-to-end example, tying every piece above together:
+
+- `WikipediaTestAutomationPage` opens the ["Test automation"](https://en.wikipedia.org/wiki/Test_automation)
+  Wikipedia page and reads the rendered "Test-driven development" section's text.
+- `WikipediaApiClient` fetches that same section's raw wikitext from Wikipedia's API
+  and strips markup (refs, templates, wikilinks, headings) down to plain text.
+- `word_counter.py` turns both texts into a unique-word count.
+- The test asserts the two counts match — a cross-check that the UI renders the
+  same content the API serves.
 
 ## Rules to follow
 

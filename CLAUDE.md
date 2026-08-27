@@ -12,7 +12,6 @@ ruff check .                                        # lint
 mypy                                                 # typecheck (src/ only)
 pytest                                               # run all tests
 pytest tests/ui                                      # only UI specs
-pytest tests/api                                     # only API specs
 pytest --headed                                      # UI tests, visible browser
 open playwright-report/report.html                   # last HTML report
 ```
@@ -21,13 +20,13 @@ Run one test, by name, or by line:
 ```bash
 pytest tests/ui/test_wikipedia_word_count.py       # one file
 pytest -k "wikipedia"                              # by name
-pytest tests/ui/test_wikipedia_word_count.py:5     # file + line
+pytest tests/ui/test_wikipedia_word_count.py:15    # file + line
 pytest -m smoke                                    # by marker (see pytest.ini)
 ```
 
 There's no single `playwright.config` file. Python splits that job in two:
 - `pytest.ini` — CLI defaults (browser, screenshot/video/trace, markers)
-- `conftest.py` — fixture overrides (base URL, timeouts, the custom `api_request_context` fixture)
+- `conftest.py` — fixture overrides (timeouts, the custom `api_request_context` fixture)
 
 ## Architecture
 
