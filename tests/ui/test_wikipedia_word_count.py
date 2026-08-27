@@ -20,6 +20,7 @@ def test_unique_word_count_matches_between_ui_and_api(
     )
     ui_word_occurrence_counts = get_word_occurrence_counts(ui_section_raw_text)
     ui_unique_word_count = print_word_occurrence_counts("UI", ui_word_occurrence_counts)
+    print("-" * 40)
 
     wikipedia_api_client = WikipediaApiClient(api_request_context)
     api_section_text = wikipedia_api_client.get_section_text(_WIKI_PAGE_STRINGS["page_title"])

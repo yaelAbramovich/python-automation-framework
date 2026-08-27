@@ -11,7 +11,6 @@ def get_word_occurrence_counts(text: str) -> Counter[str]:
 
 
 def print_word_occurrence_counts(label: str, word_occurrence_counts: Counter[str]) -> int:
-    print("-" * 40)
     print(f"{label} word occurrence counts:")
     for word, occurrence_count in word_occurrence_counts.most_common():
         print(f"{word}: {occurrence_count}")
