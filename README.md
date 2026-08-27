@@ -1,9 +1,12 @@
 # python-automation-framework
 
-A simple starter framework for testing websites and APIs with Python and Playwright.
+## Why this framework
 
-This is a base you build on. It gives you the shared building blocks —
-you add your own pages, API clients, and tests on top.
+This is a small Python + Playwright framework built for a test automation
+assignment. The goal was to keep tests easy to write and easy to read: two
+base classes — one for web pages, one for API calls — hold all the shared,
+repeated logic (opening pages, clicking, sending requests, logging), so each
+page, API client, and test only contains what's actually different about it.
 
 ## What's inside
 
@@ -60,51 +63,6 @@ src/
 tests/
   ui/                # UI tests
 ```
-
-## How a test works
-
-A UI test reaches its page object through a fixture — never by
-instantiating it directly. A page object extends `BasePage` and only
-talks to Playwright through it:
-
-```python
-def test_example(wikipedia_test_automation_page: WikipediaTestAutomationPage) -> None:
-    wikipedia_test_automation_page.open_wikipedia_test_automation_page()
-    wikipedia_test_automation_page.click_test_driven_development_table_of_contents_link()
-```
-
-An API test uses an API client. An API client extends `BaseApiClient`:
-
-```python
-client = WikipediaApiClient(api_request_context)
-section_text = client.get_section_text(page_title)
-```
-
-## Example: Wikipedia UI/API word-count check
-
-`tests/ui/test_wikipedia_word_count.py` is the framework's one working
-end-to-end example, tying every piece above together:
-
-- `WikipediaTestAutomationPage` opens the ["Test automation"](https://en.wikipedia.org/wiki/Test_automation)
-  Wikipedia page and reads the rendered "Test-driven development" section's text.
-- `WikipediaApiClient` fetches that same section's raw wikitext from Wikipedia's API
-  and strips markup (refs, templates, wikilinks, headings) down to plain text.
-- `word_counter.py` turns both texts into a unique-word count.
-- The test asserts the two counts match — a cross-check that the UI renders the
-  same content the API serves.
-
-## Rules to follow
-
-1. Use Playwright's built-in locators (`get_by_role`, `get_by_label`, ...).
-   Do not use CSS or XPath.
-2. Every page action goes through `BasePage`. Every API call goes through
-   `BaseApiClient`.
-3. Page text (labels, button names, messages) goes in `strings.json`, not
-   hard-coded in the page file.
-4. Keep methods small — one method, one action. Combine small methods into
-   one bigger method when it's reused across tests.
-5. A test always reaches a page object through its fixture in `conftest.py`
-   — never `SomePage(page)` directly inside a test.
 
 ## Known improvements
 
