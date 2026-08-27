@@ -13,7 +13,7 @@
     },
     "wikipedia_test_automation": {
       "url_path": "https://en.wikipedia.org/wiki/Test_automation",
-      "toc_navigation_accessible_name": "Contents",
+      "table_of_contents_navigation_accessible_name": "Contents",
       "test_driven_development_heading_text": "Test-driven development",
       "next_section_heading_text": "Other"
     }
