@@ -4,6 +4,8 @@ import pytest
 from playwright.sync_api import APIRequestContext, Page, Playwright
 
 from src.config.environment import environment_configuration
+from src.pages.dropdown_page import DropdownPage
+from src.pages.login_page import LoginPage
 
 # Root pytest-playwright fixtures — CLI-level defaults live in pytest.ini.
 
@@ -34,3 +36,13 @@ def api_request_context(playwright: Playwright) -> Generator[APIRequestContext, 
     )
     yield request_context
     request_context.dispose()
+
+
+@pytest.fixture
+def login_page(page: Page) -> LoginPage:
+    return LoginPage(page)
+
+
+@pytest.fixture
+def dropdown_page(page: Page) -> DropdownPage:
+    return DropdownPage(page)

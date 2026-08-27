@@ -3,7 +3,7 @@ from abc import ABC
 from enum import Enum
 from typing import Any, Optional
 
-from playwright.sync_api import APIRequestContext, APIResponse
+from playwright.sync_api import APIRequestContext, APIResponse, expect
 
 from src.infrastructure.logger import Logger
 
@@ -75,17 +75,7 @@ class BaseApiClient(ABC):
             )
             raise
 
-    def _assert_response_status(
-        self,
-        api_response: APIResponse,
-        expected_status_code: int,
-    ) -> None:
-        self._logger.debug(
-            f"Validating response status: expected {expected_status_code}, "
-            f"actual {api_response.status}"
-        )
+    def _assert_response_is_ok(self, api_response: APIResponse) -> None:
+        self._logger.debug(f"Validating response is OK, actual status {api_response.status}")
 
-        assert api_response.status == expected_status_code, (
-            f"Expected HTTP status {expected_status_code}, "
-            f"but received {api_response.status}"
-        )
+        expect(api_response).to_be_ok()

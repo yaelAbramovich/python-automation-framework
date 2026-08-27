@@ -93,10 +93,14 @@ if missing. Everything else has a default. `.env.example` lists them all.
 5. **Web-first assertions only.** Use `self._assert_element_is_visible(...)`, never
    `assert locator.is_visible()` or `locator.wait_for()` as a pre-action gate.
 
-6. **Every assert needs a message.** A plain `assert x == y` with no message is hard to debug on
-   failure — say what was expected and what was actually found (see `tests/api/test_example_posts.py`
-   for the pattern). `BasePage`'s web-first assertions already get this for free via the
-   `element_description` argument.
+6. **Use Playwright's `expect()` for anything it supports; plain `assert` for everything else.**
+   `expect()` only accepts a `Page`, `Locator`, or `APIResponse` — every check on one of those
+   goes through it (`BasePage`'s `_assert_element_*` helpers, `BaseApiClient._assert_response_is_ok`).
+   A check on parsed Python data — a dict field from a JSON body, a list, a string, a number —
+   has no Playwright equivalent, so it stays a plain `assert x == y, "message"` that says what was
+   expected and what was actually found (see `tests/api/test_example_posts.py`). A plain `assert`
+   with no message is hard to debug on failure; `expect()` calls already get this for free via the
+   `element_description`/`message` argument.
 
 7. **`BasePage` only gets generic assertions.** Its assert methods (`_assert_element_is_visible`,
    `_assert_element_contains_text`, etc.) work on any locator and know nothing about a specific
