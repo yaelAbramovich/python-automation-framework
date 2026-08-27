@@ -39,6 +39,7 @@ pytest tests/ui              # only UI tests
 pytest tests/api             # only API tests
 pytest -k "wikipedia"        # tests matching a name
 pytest --headed              # show the browser
+pytest -v                    # show PASSED/FAILED per test
 ```
 
 After a run, open the report:
