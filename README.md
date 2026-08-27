@@ -74,6 +74,16 @@ tests/
   header (Wikipedia's API policy expects one identifying the client) and/or add
   retry/backoff, then restore the dynamic lookup.
 
+## Note on the spec itself
+
+The assignment's "Project Overview" paragraph says "history section," but there's
+no "History" section on the Wikipedia "Test automation" page at all — while both
+the UI and API step-by-step instructions (the actual actionable text, stated
+identically twice) say "test-driven development section." That's clearly a
+leftover/stale phrase from a template, not a real instruction, so this
+implementation follows the repeated, unambiguous instructions and targets the
+Test-driven development section.
+
 ## Checks before you commit
 
 ```bash
