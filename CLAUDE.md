@@ -130,9 +130,3 @@ never read `os.environ` anywhere else. Every env var has a default. `.env.exampl
 - **New env var:** add it to `.env.example`, then to `EnvironmentConfiguration` and
   `environment_configuration` in `environment.py`. Validate it if the value has rules (see
   `_read_log_level_environment_variable_or_default` for the pattern).
-
-## CI
-
-`.github/workflows/playwright.yml` runs manually for now (`workflow_dispatch`), with a `tag` input
-(`all`/`smoke`/`regression`) to filter by pytest marker. It runs `ruff check` → `mypy` →
-API tests → UI tests (chromium only), then uploads the HTML report.
