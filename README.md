@@ -95,6 +95,16 @@ response, post = client.get_post_by_id(1)
 5. A test always reaches a page object through its fixture in `conftest.py`
    — never `SomePage(page)` directly inside a test.
 
+## Known improvements
+
+- `WikipediaApiClient.get_section_text` uses a hard-coded section index
+  (`_TEST_DRIVEN_DEVELOPMENT_SECTION_INDEX`) instead of looking it up via
+  Wikipedia's `action=parse&prop=sections` endpoint. The lookup call worked, but
+  firing it right before the content request tripped Wikipedia's rate limiting
+  (HTTP 429) on the second call. A real fix would send a proper `User-Agent`
+  header (Wikipedia's API policy expects one identifying the client) and/or add
+  retry/backoff, then restore the dynamic lookup.
+
 ## Checks before you commit
 
 ```bash

@@ -12,10 +12,9 @@ def test_unique_word_count_matches_between_ui_and_api(
     wikipedia_test_automation_page: WikipediaTestAutomationPage,
     api_request_context: APIRequestContext,
 ) -> None:
-    section_name = _WIKI_PAGE_STRINGS["test_driven_development_heading_text"]
-
     wikipedia_test_automation_page.open_wikipedia_test_automation_page()
     wikipedia_test_automation_page.click_test_driven_development_table_of_contents_link()
+
     ui_section_raw_text = (
         wikipedia_test_automation_page.get_test_driven_development_section_raw_text()
     )
@@ -23,9 +22,7 @@ def test_unique_word_count_matches_between_ui_and_api(
     ui_unique_word_count = print_word_occurrence_counts("UI", ui_word_occurrence_counts)
 
     wikipedia_api_client = WikipediaApiClient(api_request_context)
-    api_section_text = wikipedia_api_client.get_section_text(
-        _WIKI_PAGE_STRINGS["page_title"], section_name
-    )
+    api_section_text = wikipedia_api_client.get_section_text(_WIKI_PAGE_STRINGS["page_title"])
     api_word_occurrence_counts = get_word_occurrence_counts(api_section_text)
     api_unique_word_count = print_word_occurrence_counts("API", api_word_occurrence_counts)
 
