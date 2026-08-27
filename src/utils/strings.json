@@ -1,16 +1,5 @@
 {
   "pages": {
-    "login": {
-      "url_path": "/login",
-      "username_input_label": "Username",
-      "password_input_label": "Password",
-      "login_button_accessible_name": "Login",
-      "login_success_message": "You logged into a secure area!"
-    },
-    "dropdown": {
-      "url_path": "/dropdown",
-      "option_one_label": "Option 1"
-    },
     "wikipedia_test_automation": {
       "url_path": "https://en.wikipedia.org/wiki/Test_automation",
       "table_of_contents_navigation_accessible_name": "Contents",
