@@ -9,9 +9,9 @@ you add your own pages, API clients, and tests on top.
 
 - **Playwright** – opens browsers and calls APIs
 - **pytest** – runs the tests
-- **BasePage** – shared actions for web pages (click, fill, check text)
+- **BasePage** – shared actions for web pages (navigate, click, read rendered text)
 - **BaseApiClient** – shared actions for API calls (send request, read response)
-- **Logger** – clear, timestamped logs, with password/secret masking
+- **Logger** – clear, timestamped logs
 - **strings.json** – page text (labels, button names, messages) in one place
 
 ## Setup
@@ -37,7 +37,7 @@ More ways to run:
 ```bash
 pytest tests/ui              # only UI tests
 pytest tests/api             # only API tests
-pytest -k "login"            # tests matching a name
+pytest -k "wikipedia"        # tests matching a name
 pytest --headed              # show the browser
 ```
 
@@ -64,13 +64,14 @@ tests/
 
 ## How a test works
 
-A UI test uses a page object. A page object extends `BasePage` and only
+A UI test reaches its page object through a fixture — never by
+instantiating it directly. A page object extends `BasePage` and only
 talks to Playwright through it:
 
 ```python
-login_page = LoginPage(page)
-login_page.open()
-login_page.login("tomsmith", "SuperSecretPassword!")
+def test_example(wikipedia_test_automation_page: WikipediaTestAutomationPage) -> None:
+    wikipedia_test_automation_page.open_wikipedia_test_automation_page()
+    wikipedia_test_automation_page.click_test_driven_development_table_of_contents_link()
 ```
 
 An API test uses an API client. An API client extends `BaseApiClient`:
@@ -88,10 +89,10 @@ response, post = client.get_post_by_id(1)
    `BaseApiClient`.
 3. Page text (labels, button names, messages) goes in `strings.json`, not
    hard-coded in the page file.
-4. Pass `sensitive=True` when filling a password or secret, so it doesn't
-   show up in logs.
-5. Keep methods small — one method, one action. Combine small methods into
-   one bigger method when useful (see `LoginPage.login`).
+4. Keep methods small — one method, one action. Combine small methods into
+   one bigger method when it's reused across tests.
+5. A test always reaches a page object through its fixture in `conftest.py`
+   — never `SomePage(page)` directly inside a test.
 
 ## Checks before you commit
 
